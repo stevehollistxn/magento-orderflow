@@ -16,7 +16,8 @@ class SixBySix_RealTimeDespatch_Model_Observer_Order_Grid
     {
         $block = $event->getBlock();
 
-        if ($block instanceof Mage_Adminhtml_Block_Sales_Order_Grid) {
+        if ($block instanceof Mage_Adminhtml_Block_Sales_Order_Grid &&
+	        Mage::helper('realtimedespatch/admin_info')->showExportedColumnOnOrderGrid()) {
 	        $block->addColumnAfter(
 		        'is_exported',
 		        array(

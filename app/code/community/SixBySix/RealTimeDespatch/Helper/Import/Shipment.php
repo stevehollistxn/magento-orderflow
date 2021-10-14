@@ -16,7 +16,7 @@ class SixBySix_RealTimeDespatch_Helper_Import_Shipment extends Mage_Core_Helper_
             return false;
         }
 
-        return Mage::getStoreConfigFlag('sixbysix_realtimedespatch/shipment_import/is_enabled');
+        return Mage::getStoreConfigFlag('realtimedespatch/shipment_import/is_enabled');
     }
 
     /**
@@ -26,7 +26,7 @@ class SixBySix_RealTimeDespatch_Helper_Import_Shipment extends Mage_Core_Helper_
      */
     public function getBatchLimit()
     {
-        return (integer) Mage::getStoreConfig('sixbysix_realtimedespatch/shipment_import/batch_size');
+        return (integer) Mage::getStoreConfig('realtimedespatch/shipment_import/batch_size');
     }
 
     /**
@@ -49,7 +49,7 @@ class SixBySix_RealTimeDespatch_Helper_Import_Shipment extends Mage_Core_Helper_
      */
     public function disable()
     {
-        Mage::getConfig()->saveConfig('sixbysix_realtimedespatch/shipment_import/is_enabled', false);
+        Mage::getConfig()->saveConfig('realtimedespatch/shipment_import/is_enabled', false);
         Mage::getConfig()->reinit();
         Mage::app()->reinitStores();
     }

@@ -16,10 +16,11 @@ class SixBySix_RealTimeDespatch_Model_Observer_Product_Grid
     {
         $collection = $event->getCollection();
 
-        if ( ! $collection)
-            return;
+        if ( ! $collection) {
+	        return;
+        }
 
-        if ($collection instanceof Mage_Catalog_Model_Resource_Product_Collection) {
+        if ($collection instanceof Mage_Catalog_Model_Resource_Product_Collection && Mage::helper('realtimedespatch/admin_info')->showExportedColumnOnProductGrid()) {
             if (($productListBlock = Mage::app()->getLayout()->getBlock('products_list')) != false &&($productListBlock instanceof Mage_Adminhtml_Block_Catalog_Product)){
                 $this->_addExportColumn($productListBlock->getChild('grid'));
             } else if(($block = Mage::app()->getLayout()->getBlock('admin.product.grid')) != false){

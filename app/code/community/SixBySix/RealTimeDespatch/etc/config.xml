@@ -11,7 +11,6 @@
                 <args>
                     <modules>
                         <realtimedespatch before="Mage_Adminhtml">SixBySix_RealTimeDespatch_Adminhtml</realtimedespatch>
-                        <sixbysix_realtimedespatch before="Mage_Adminhtml">SixBySix_RealTimeDespatch_Adminhtml</sixbysix_realtimedespatch>
                     </modules>
                 </args>
             </adminhtml>
@@ -56,7 +55,6 @@
                     </product_edit_tab_attributes_prefix>
                 </observers>
             </core_block_abstract_to_html_after>
-            <!-- SH @todo -->
             <adminhtml_orderflow_import_lines_grid_prepare_columns>
                 <observers>
                     <import_lines_grid_observer>
@@ -240,46 +238,54 @@
         </events>
     </global>
     <default>
-        <sixbysix_realtimedespatch>
+        <realtimedespatch>
             <general>
                 <is_enabled>0</is_enabled>
-            </general>
-            <api_config>
+                <admin_name></admin_name>
+                <admin_email>test@example.com</admin_email>
                 <endpoint></endpoint>
                 <username></username>
                 <organisation></organisation>
                 <channel></channel>
-            </api_config>
+            </general>
             <product_export>
                 <is_enabled>0</is_enabled>
-                <cron_expr></cron_expr>
+                <cron_expr>*/5 * * * *</cron_expr>
                 <batch_size>100</batch_size>
             </product_export>
             <order_export>
                 <is_enabled>0</is_enabled>
                 <is_discount_enabled>0</is_discount_enabled>
-                <cron_expr></cron_expr>
+                <cron_expr>*/5 * * * *</cron_expr>
                 <batch_size>100</batch_size>
                 <exportable_order_statuses>processing</exportable_order_statuses>
             </order_export>
             <shipment_import>
                 <is_enabled>0</is_enabled>
-                <cron_expr></cron_expr>
+                <cron_expr>*/5 * * * *</cron_expr>
                 <batch_size>100</batch_size>
             </shipment_import>
             <inventory_import>
                 <is_enabled>0</is_enabled>
-                <cron_expr></cron_expr>
+                <cron_expr>*/5 * * * *</cron_expr>
                 <batch_size>100</batch_size>
                 <negative_qtys_enabled>0</negative_qtys_enabled>
                 <calculate_adjustments>0</calculate_adjustments>
                 <active_quote_cutoff>1</active_quote_cutoff>
                 <unsent_order_cutoff>14</unsent_order_cutoff>
             </inventory_import>
+            <log_cleaning>
+                <is_enabled>0</is_enabled>
+                <cron_expr>0 0 * * *</cron_expr>
+                <web_log_duration>5</web_log_duration>
+                <xml_log_duration>1</xml_log_duration>
+            </log_cleaning>
             <admin_info>
                 <is_enabled>1</is_enabled>
+                <product_grid_exported_column>1</product_grid_exported_column>
+                <order_grid_exported_column>1</order_grid_exported_column>
             </admin_info>
-        </sixbysix_realtimedespatch>
+        </realtimedespatch>
     </default>
     <crontab>
         <jobs>

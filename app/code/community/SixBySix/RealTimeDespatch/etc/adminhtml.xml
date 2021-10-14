@@ -50,7 +50,7 @@
                 </schedule>
                 <settings module="realtimedespatch">
                     <title>Settings</title>
-                    <action>adminhtml/system_config/edit/section/sixbysix_realtimedespatch/</action>
+                    <action>adminhtml/system_config/edit/section/realtimedespatch/</action>
                 </settings>
             </children>
         </realtimedespatch>
@@ -63,10 +63,10 @@
                         <children>
                             <config>
                                 <children>
-                                    <sixbysix_realtimedespatch translate="title" module="realtimedespatch">
+                                    <realtimedespatch translate="title" module="realtimedespatch">
                                         <title>OrderFlow Configuration</title>
                                         <sort_order>100</sort_order>
-                                    </sixbysix_realtimedespatch>
+                                    </realtimedespatch>
                                 </children>
                             </config>
                         </children>

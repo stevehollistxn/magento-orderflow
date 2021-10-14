@@ -12,10 +12,10 @@ class SixBySix_RealTimeDespatch_Helper_Data extends Mage_Core_Helper_Abstract
      */
     public function isEnabled()
     {
-        return Mage::getStoreConfigFlag('sixbysix_realtimedespatch/general/is_enabled');
+        return Mage::getStoreConfigFlag('realtimedespatch/general/is_enabled');
     }
 
-    /**
+	/**
 	 * Checks whether the module is configured
 	 */
 	public function isConfigured()
@@ -23,6 +23,7 @@ class SixBySix_RealTimeDespatch_Helper_Data extends Mage_Core_Helper_Abstract
 		return $this->getApiEndpoint() && $this->getApiUsername() && $this->getApiPassword() &&
 			$this->getApiChannel() && $this->getApiOrganisation();
 	}
+
     /**
      * Returns the Admin Contact Name.
      *
@@ -30,7 +31,7 @@ class SixBySix_RealTimeDespatch_Helper_Data extends Mage_Core_Helper_Abstract
      */
     public function getAdminName()
     {
-        return (string) Mage::getStoreConfig('sixbysix_realtimedespatch/general/admin_name');
+        return (string) Mage::getStoreConfig('realtimedespatch/general/admin_name');
     }
 
     /**
@@ -40,7 +41,7 @@ class SixBySix_RealTimeDespatch_Helper_Data extends Mage_Core_Helper_Abstract
      */
     public function getAdminEmail()
     {
-        return (string) Mage::getStoreConfig('sixbysix_realtimedespatch/general/admin_email');
+        return (string) Mage::getStoreConfig('realtimedespatch/general/admin_email');
     }
 
     /**
@@ -50,7 +51,7 @@ class SixBySix_RealTimeDespatch_Helper_Data extends Mage_Core_Helper_Abstract
      */
     public function getApiEndpoint()
     {
-        return (string) Mage::getStoreConfig('sixbysix_realtimedespatch/api_config/endpoint');
+        return (string) Mage::getStoreConfig('realtimedespatch/general/endpoint');
     }
 
     /**
@@ -60,7 +61,7 @@ class SixBySix_RealTimeDespatch_Helper_Data extends Mage_Core_Helper_Abstract
      */
     public function getApiUsername()
     {
-        return (string) Mage::getStoreConfig('sixbysix_realtimedespatch/api_config/username');
+        return (string) Mage::getStoreConfig('realtimedespatch/general/username');
     }
 
     /**
@@ -70,7 +71,7 @@ class SixBySix_RealTimeDespatch_Helper_Data extends Mage_Core_Helper_Abstract
      */
     public function getApiPassword()
     {
-        return (string) Mage::getStoreConfig('sixbysix_realtimedespatch/api_config/password');
+        return (string) Mage::getStoreConfig('realtimedespatch/general/password');
     }
 
     /**
@@ -80,7 +81,7 @@ class SixBySix_RealTimeDespatch_Helper_Data extends Mage_Core_Helper_Abstract
      */
     public function getApiOrganisation()
     {
-        return (string) Mage::getStoreConfig('sixbysix_realtimedespatch/api_config/organisation');
+        return (string) Mage::getStoreConfig('realtimedespatch/general/organisation');
     }
 
     /**
@@ -90,6 +91,6 @@ class SixBySix_RealTimeDespatch_Helper_Data extends Mage_Core_Helper_Abstract
      */
     public function getApiChannel()
     {
-        return (string) Mage::getStoreConfig('sixbysix_realtimedespatch/api_config/channel');
+        return (string) Mage::getStoreConfig('realtimedespatch/general/channel');
     }
 }

@@ -16,7 +16,7 @@ class SixBySix_RealTimeDespatch_Helper_Export_Order extends Mage_Core_Helper_Abs
             return false;
         }
 
-        return Mage::getStoreConfigFlag('sixbysix_realtimedespatch/order_export/is_enabled');
+        return Mage::getStoreConfigFlag('realtimedespatch/order_export/is_enabled');
     }
 
     /**
@@ -26,7 +26,7 @@ class SixBySix_RealTimeDespatch_Helper_Export_Order extends Mage_Core_Helper_Abs
      */
     public function isDiscountEnabled()
     {
-        return Mage::getStoreConfigFlag('sixbysix_realtimedespatch/order_export/is_discount_enabled');
+        return Mage::getStoreConfigFlag('realtimedespatch/order_export/is_discount_enabled');
     }
 
     /**
@@ -36,7 +36,7 @@ class SixBySix_RealTimeDespatch_Helper_Export_Order extends Mage_Core_Helper_Abs
      */
     public function getBatchLimit()
     {
-        return (integer) Mage::getStoreConfig('sixbysix_realtimedespatch/order_export/batch_size');
+        return (integer) Mage::getStoreConfig('realtimedespatch/order_export/batch_size');
     }
 
     /**
@@ -46,7 +46,7 @@ class SixBySix_RealTimeDespatch_Helper_Export_Order extends Mage_Core_Helper_Abs
      */
     public function getExportableOrderStatuses()
     {
-        return explode(',', Mage::getStoreConfig('sixbysix_realtimedespatch/order_export/exportable_order_statuses'));
+        return explode(',', Mage::getStoreConfig('realtimedespatch/order_export/exportable_order_statuses'));
     }
 
     /**
@@ -72,7 +72,7 @@ class SixBySix_RealTimeDespatch_Helper_Export_Order extends Mage_Core_Helper_Abs
      */
     public function disable()
     {
-        Mage::getConfig()->saveConfig('sixbysix_realtimedespatch/order_export/is_enabled', false);
+        Mage::getConfig()->saveConfig('realtimedespatch/order_export/is_enabled', false);
         Mage::getConfig()->reinit();
         Mage::app()->reinitStores();
     }

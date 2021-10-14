@@ -56,7 +56,7 @@ class SixBySix_RealTimeDespatch_Model_Mapper_Products extends Mage_Core_Helper_A
             }
         }
 
-	    if(Mage::getStoreConfigFlag('sixbysix_realtimedespatch/product_export/image_export'))
+	    if(Mage::getStoreConfigFlag('realtimedespatch/product_export/image_export'))
 	    {
 		    $this->_swapPlaceholderWithParentImage($product, $encodedProduct);
 	    }

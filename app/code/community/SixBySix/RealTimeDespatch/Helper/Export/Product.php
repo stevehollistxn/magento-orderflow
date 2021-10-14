@@ -16,7 +16,7 @@ class SixBySix_RealTimeDespatch_Helper_Export_Product extends Mage_Core_Helper_A
             return false;
         }
 
-        return Mage::getStoreConfigFlag('sixbysix_realtimedespatch/product_export/is_enabled');
+        return Mage::getStoreConfigFlag('realtimedespatch/product_export/is_enabled');
     }
 
     /**
@@ -26,7 +26,7 @@ class SixBySix_RealTimeDespatch_Helper_Export_Product extends Mage_Core_Helper_A
      */
     public function getStoreId()
     {
-        return (integer) Mage::getStoreConfig('sixbysix_realtimedespatch/product_export/store_id');
+        return (integer) Mage::getStoreConfig('realtimedespatch/product_export/store_id');
     }
 
     /**
@@ -36,7 +36,7 @@ class SixBySix_RealTimeDespatch_Helper_Export_Product extends Mage_Core_Helper_A
      */
     public function getBatchLimit()
     {
-        return (integer) Mage::getStoreConfig('sixbysix_realtimedespatch/product_export/batch_size');
+        return (integer) Mage::getStoreConfig('realtimedespatch/product_export/batch_size');
     }
 
     /**
@@ -78,7 +78,7 @@ class SixBySix_RealTimeDespatch_Helper_Export_Product extends Mage_Core_Helper_A
      */
     public function disable()
     {
-        Mage::getConfig()->saveConfig('sixbysix_realtimedespatch/product_export/is_enabled', false);
+        Mage::getConfig()->saveConfig('realtimedespatch/product_export/is_enabled', false);
         Mage::getConfig()->reinit();
         Mage::app()->reinitStores();
     }

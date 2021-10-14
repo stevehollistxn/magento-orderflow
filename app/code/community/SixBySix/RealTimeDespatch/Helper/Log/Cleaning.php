@@ -12,7 +12,11 @@ class SixBySix_RealTimeDespatch_Helper_Log_Cleaning extends Mage_Core_Helper_Abs
      */
     public function isEnabled()
     {
-        return Mage::helper('realtimedespatch')->isEnabled();
+    	if (!Mage::helper('realtimedespatch')->isEnabled()) {
+    		return false;
+	    }
+
+	    return (boolean) Mage::getStoreConfig('realtimedespatch/log_cleaning/is_enabled');
     }
 
     /**
@@ -22,7 +26,7 @@ class SixBySix_RealTimeDespatch_Helper_Log_Cleaning extends Mage_Core_Helper_Abs
      */
     public function getWebLogDuration()
     {
-        return (integer) Mage::getStoreConfig('sixbysix_realtimedespatch/log_cleaning/web_log_duration');
+        return (integer) Mage::getStoreConfig('realtimedespatch/log_cleaning/web_log_duration');
     }
 
     /**
@@ -32,6 +36,6 @@ class SixBySix_RealTimeDespatch_Helper_Log_Cleaning extends Mage_Core_Helper_Abs
      */
     public function getXmlLogDuration()
     {
-        return (integer) Mage::getStoreConfig('sixbysix_realtimedespatch/log_cleaning/xml_log_duration');
+        return (integer) Mage::getStoreConfig('realtimedespatch/log_cleaning/xml_log_duration');
     }
 }

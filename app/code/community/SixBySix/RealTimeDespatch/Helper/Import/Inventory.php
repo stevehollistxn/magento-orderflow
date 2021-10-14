@@ -16,7 +16,7 @@ class SixBySix_RealTimeDespatch_Helper_Import_Inventory extends Mage_Core_Helper
             return false;
         }
 
-        return Mage::getStoreConfigFlag('sixbysix_realtimedespatch/inventory_import/is_enabled');
+        return Mage::getStoreConfigFlag('realtimedespatch/inventory_import/is_enabled');
     }
 
     /**
@@ -26,7 +26,7 @@ class SixBySix_RealTimeDespatch_Helper_Import_Inventory extends Mage_Core_Helper
      */
     public function getBatchLimit()
     {
-        return (integer) Mage::getStoreConfig('sixbysix_realtimedespatch/inventory_import/batch_size');
+        return (integer) Mage::getStoreConfig('realtimedespatch/inventory_import/batch_size');
     }
 
     /**
@@ -49,7 +49,7 @@ class SixBySix_RealTimeDespatch_Helper_Import_Inventory extends Mage_Core_Helper
      */
     public function isNegativeQtyEnabled()
     {
-        return Mage::getStoreConfigFlag('sixbysix_realtimedespatch/inventory_import/negative_qtys_enabled');
+        return Mage::getStoreConfigFlag('realtimedespatch/inventory_import/negative_qtys_enabled');
     }
 
     /**
@@ -59,7 +59,7 @@ class SixBySix_RealTimeDespatch_Helper_Import_Inventory extends Mage_Core_Helper
      */
     public function isInventoryAdjustmentEnabled()
     {
-        return (integer) Mage::getStoreConfig('sixbysix_realtimedespatch/inventory_import/adjust_inventory') !== 0;
+        return (integer) Mage::getStoreConfig('realtimedespatch/inventory_import/adjust_inventory') !== 0;
     }
 
     /**
@@ -69,7 +69,7 @@ class SixBySix_RealTimeDespatch_Helper_Import_Inventory extends Mage_Core_Helper
      */
     public function isUnsentOrderAdjustmentEnabled()
     {
-        return (integer) Mage::getStoreConfig('sixbysix_realtimedespatch/inventory_import/adjust_inventory') > 0;
+        return (integer) Mage::getStoreConfig('realtimedespatch/inventory_import/adjust_inventory') > 0;
     }
 
     /**
@@ -79,7 +79,7 @@ class SixBySix_RealTimeDespatch_Helper_Import_Inventory extends Mage_Core_Helper
      */
     public function isActiveQuoteAdjustmentEnabled()
     {
-        return (integer) Mage::getStoreConfig('sixbysix_realtimedespatch/inventory_import/adjust_inventory') > 1;
+        return (integer) Mage::getStoreConfig('realtimedespatch/inventory_import/adjust_inventory') > 1;
     }
 
     /**
@@ -89,7 +89,7 @@ class SixBySix_RealTimeDespatch_Helper_Import_Inventory extends Mage_Core_Helper
      */
     public function getValidUnsentOrderStatuses()
     {
-        return explode(',', Mage::getStoreConfig('sixbysix_realtimedespatch/inventory_import/valid_unsent_order_statuses'));
+        return explode(',', Mage::getStoreConfig('realtimedespatch/inventory_import/valid_unsent_order_statuses'));
     }
 
     /**
@@ -99,7 +99,7 @@ class SixBySix_RealTimeDespatch_Helper_Import_Inventory extends Mage_Core_Helper
      */
     public function getActiveQuoteCutoff()
     {
-        return (integer) Mage::getStoreConfig('sixbysix_realtimedespatch/inventory_import/active_quote_cutoff');
+        return (integer) Mage::getStoreConfig('realtimedespatch/inventory_import/active_quote_cutoff');
     }
 
     /**
@@ -119,7 +119,7 @@ class SixBySix_RealTimeDespatch_Helper_Import_Inventory extends Mage_Core_Helper
      */
     public function getUnsentOrderCutoff()
     {
-        return (integer) Mage::getStoreConfig('sixbysix_realtimedespatch/inventory_import/unsent_order_cutoff');
+        return (integer) Mage::getStoreConfig('realtimedespatch/inventory_import/unsent_order_cutoff');
     }
 
     /**
@@ -139,7 +139,7 @@ class SixBySix_RealTimeDespatch_Helper_Import_Inventory extends Mage_Core_Helper
      */
     public function disable()
     {
-        Mage::getConfig()->saveConfig('sixbysix_realtimedespatch/inventory_import/is_enabled', false);
+        Mage::getConfig()->saveConfig('realtimedespatch/inventory_import/is_enabled', false);
         Mage::getConfig()->reinit();
         Mage::app()->reinitStores();
     }
