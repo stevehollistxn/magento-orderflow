@@ -155,14 +155,6 @@
             <realtimedespatch>
                 <class>SixBySix_RealTimeDespatch_Block</class>
             </realtimedespatch>
-            <adminhtml>
-                <rewrite>
-                    <adminhtml_bulk_export_view_view_plane>SixBySix_RealTimeDespatch_Block_Adminhtml_Bulk_Export_View_Plane</adminhtml_bulk_export_view_view_plane>
-                    <adminhtml_exports_view_view_plane>SixBySix_RealTimeDespatch_Block_Adminhtml_Exports_View_Plane</adminhtml_exports_view_view_plane>
-                    <adminhtml_imports_view_view_plane>SixBySix_RealTimeDespatch_Block_Adminhtml_Imports_View_Plane</adminhtml_imports_view_view_plane>
-                    <adminhtml_requests_view_view_plane>SixBySix_RealTimeDespatch_Block_Adminhtml_Requests_View_Plane</adminhtml_requests_view_view_plane>
-                </rewrite>
-            </adminhtml>
         </blocks>
         <resources>
             <realtimedespatch_setup>

@@ -20,6 +20,15 @@ class SixBySix_RealTimeDespatch_Block_Adminhtml_Exports_View extends Mage_Adminh
         $this->_removeButton('edit');
     }
 
+	/**
+	 * @return Mage_Core_Block_Abstract
+	 */
+    protected function _prepareLayout()
+	{
+		$this->setChild('plane', $this->getLayout()->createBlock('realtimedespatch/' . $this->_controller . '_view_plane'));
+		return Mage_Adminhtml_Block_Widget_Container::_prepareLayout();
+	}
+
     /**
      * {@inheritdoc}
      */
