@@ -83,12 +83,15 @@ class SixBySix_RealTimeDespatch_Model_Observer_Product_Grid
 
         $block = $event->getBlock();
 
-        $block->getMassactionBlock()->addItem(
-            'export',
-            array(
-             'label'   => Mage::helper('catalog')->__('Export To OrderFlow'),
-             'url'     => $block->getUrl('*/*/exportToOrderFlow'),
-             'confirm' => Mage::helper('catalog')->__('Are you sure?')
-       ));
+	    if ($block instanceof Mage_Adminhtml_Block_Widget_Grid_Massaction &&
+		    $block->getRequest()->getControllerName() == 'catalog_product') {
+		    $block->addItem(
+			    'export',
+			    array(
+				    'label' => Mage::helper('catalog')->__('Export To OrderFlow'),
+				    'url' => $block->getUrl('*/*/exportToOrderFlow'),
+				    'confirm' => Mage::helper('catalog')->__('Are you sure?')
+			    ));
+	    }
     }
 }

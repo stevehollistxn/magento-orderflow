@@ -19,33 +19,44 @@
     </admin>
     <adminhtml>
         <events>
-            <adminhtml_catalog_product_grid_setup_export>
+            <core_block_abstract_prepare_layout_before>
                 <observers>
-                    <product_grid_observer>
+                    <product_grid_observer_export_action>
                         <type>singleton</type>
                         <class>realtimedespatch/observer_product_grid</class>
                         <method>addExportAction</method>
-                    </product_grid_observer>
-                </observers>
-            </adminhtml_catalog_product_grid_setup_export>
-            <adminhtml_sales_order_grid_prepare_massaction>
-                <observers>
-                    <order_grid_observer>
+                    </product_grid_observer_export_action>
+                    <order_grid_observer_export_action>
                         <type>singleton</type>
                         <class>realtimedespatch/observer_order_grid</class>
                         <method>addExportAction</method>
-                    </order_grid_observer>
+                    </order_grid_observer_export_action>
+                    <product_edit_tab_inventory_template>
+                        <type>singleton</type>
+                        <class>realtimedespatch/observer_product_edit_inventory</class>
+                        <method>updateInventoryTabTemplate</method>
+                    </product_edit_tab_inventory_template>
                 </observers>
-            </adminhtml_sales_order_grid_prepare_massaction>
-            <adminhtml_sales_order_grid_prepare_columns>
-               <observers>
-                    <order_grid_observer>
+            </core_block_abstract_prepare_layout_before>
+            <core_block_abstract_prepare_layout_after>
+                <observers>
+                    <order_grid_observer_add_export_column>
                         <type>singleton</type>
                         <class>realtimedespatch/observer_order_grid</class>
                         <method>addExportColumn</method>
-                    </order_grid_observer>
+                    </order_grid_observer_add_export_column>
                 </observers>
-            </adminhtml_sales_order_grid_prepare_columns>
+            </core_block_abstract_prepare_layout_after>
+            <core_block_abstract_to_html_after>
+                <observers>
+                    <product_edit_tab_attributes_prefix>
+                        <type>singleton</type>
+                        <class>realtimedespatch/observer_product_edit_attributes</class>
+                        <method>addPrefixToTab</method>
+                    </product_edit_tab_attributes_prefix>
+                </observers>
+            </core_block_abstract_to_html_after>
+            <!-- SH @todo -->
             <adminhtml_orderflow_import_lines_grid_prepare_columns>
                 <observers>
                     <import_lines_grid_observer>
@@ -148,14 +159,10 @@
             </realtimedespatch>
             <adminhtml>
                 <rewrite>
-                    <catalog_product_grid>SixBySix_RealTimeDespatch_Block_Adminhtml_Catalog_Product_Grid</catalog_product_grid>
                     <adminhtml_bulk_export_view_view_plane>SixBySix_RealTimeDespatch_Block_Adminhtml_Bulk_Export_View_Plane</adminhtml_bulk_export_view_view_plane>
                     <adminhtml_exports_view_view_plane>SixBySix_RealTimeDespatch_Block_Adminhtml_Exports_View_Plane</adminhtml_exports_view_view_plane>
                     <adminhtml_imports_view_view_plane>SixBySix_RealTimeDespatch_Block_Adminhtml_Imports_View_Plane</adminhtml_imports_view_view_plane>
                     <adminhtml_requests_view_view_plane>SixBySix_RealTimeDespatch_Block_Adminhtml_Requests_View_Plane</adminhtml_requests_view_view_plane>
-                    <sales_order_grid>SixBySix_RealTimeDespatch_Block_Adminhtml_Sales_Order_Grid</sales_order_grid>
-                    <catalog_product_edit_tab_inventory>SixBySix_RealTimeDespatch_Block_Adminhtml_Catalog_Product_Edit_Tab_Inventory</catalog_product_edit_tab_inventory>
-                    <catalog_product_edit_tab_attributes>SixBySix_RealTimeDespatch_Block_Adminhtml_Catalog_Product_Edit_Tab_Attributes</catalog_product_edit_tab_attributes>
                 </rewrite>
             </adminhtml>
         </blocks>

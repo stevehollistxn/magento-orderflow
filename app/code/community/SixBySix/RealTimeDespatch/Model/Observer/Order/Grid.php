@@ -16,21 +16,23 @@ class SixBySix_RealTimeDespatch_Model_Observer_Order_Grid
     {
         $block = $event->getBlock();
 
-        $block->addColumnAfter(
-            'is_exported',
-            array (
-                'header'   => Mage::helper ('realtimedespatch')->__('Exported To OrderFlow'),
-                'width'    => '80px',
-                'index'    => 'is_exported',
-                'type'     => 'options',
-                'options'  => array(1 => 'True', 0 => 'False'),
-                'renderer' => new SixBySix_RealTimeDespatch_Block_Adminhtml_Renderer_Exported(),
-                'align'    => 'center'
-            ),
-            'status'
-        );
+        if ($block instanceof Mage_Adminhtml_Block_Sales_Order_Grid) {
+	        $block->addColumnAfter(
+		        'is_exported',
+		        array(
+			        'header' => Mage::helper('realtimedespatch')->__('Exported To OrderFlow'),
+			        'width' => '80px',
+			        'index' => 'is_exported',
+			        'type' => 'options',
+			        'options' => array(1 => 'True', 0 => 'False'),
+			        'renderer' => new SixBySix_RealTimeDespatch_Block_Adminhtml_Renderer_Exported(),
+			        'align' => 'center'
+		        ),
+		        'status'
+	        );
 
-        $block->sortColumnsByOrder();
+	        $block->sortColumnsByOrder();
+        }
     }
 
     /**
@@ -47,13 +49,15 @@ class SixBySix_RealTimeDespatch_Model_Observer_Order_Grid
         }
 
         $block = $event->getBlock();
-
-        $block->getMassactionBlock()->addItem(
-            'export',
-            array(
-             'label'   => Mage::helper('sales')->__('Export To OrderFlow'),
-             'url'     => $block->getUrl('*/*/exportToOrderFlow'),
-             'confirm' => Mage::helper('sales')->__('Are you sure?')
-       ));
+	    if ($block instanceof Mage_Adminhtml_Block_Widget_Grid_Massaction &&
+		    $block->getRequest()->getControllerName() == 'sales_order') {
+		    $block->addItem(
+			    'export',
+			    array(
+				    'label' => Mage::helper('sales')->__('Export To OrderFlow'),
+				    'url' => $block->getUrl('*/*/exportToOrderFlow'),
+				    'confirm' => Mage::helper('sales')->__('Are you sure?')
+			    ));
+	    }
     }
 }
