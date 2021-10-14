@@ -16,6 +16,14 @@ class SixBySix_RealTimeDespatch_Helper_Data extends Mage_Core_Helper_Abstract
     }
 
     /**
+	 * Checks whether the module is configured
+	 */
+	public function isConfigured()
+	{
+		return $this->getApiEndpoint() && $this->getApiUsername() && $this->getApiPassword() &&
+			$this->getApiChannel() && $this->getApiOrganisation();
+	}
+    /**
      * Returns the Admin Contact Name.
      *
      * @return string

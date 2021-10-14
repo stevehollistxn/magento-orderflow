@@ -77,8 +77,8 @@
     <?php endif; ?>
     <div class="clear"></div>
 
-    <?php if (Mage::helper('realtimedespatch/admin_info')->isEnabled()): ?>
-        <?php $orderFlowHelper = Mage::helper('realtimedespatch'); ?>
+    <?php $orderFlowHelper = Mage::helper('realtimedespatch'); ?>
+    <?php if ($orderFlowHelper->isConfigured() && Mage::helper('realtimedespatch/admin_info')->isEnabled()): ?>
         <div class="box-left">
             <div class="entry-edit">
                 <div class="entry-edit-head">

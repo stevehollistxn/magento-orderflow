@@ -31,8 +31,8 @@
 <?php $_readonly = '';?>
 <?php endif; ?>
 
-<?php if (Mage::helper('realtimedespatch/admin_info')->isEnabled()): ?>
     <?php $orderFlowHelper = Mage::helper('realtimedespatch'); ?>
+<?php if ($orderFlowHelper->isConfigured() && Mage::helper('realtimedespatch/admin_info')->isEnabled()): ?>
     <div class="entry-edit">
         <div class="entry-edit-head">
             <h4 class="icon-head head-payment-method"><?php echo Mage::helper('sales')->__('OrderFlow') ?></h4>
