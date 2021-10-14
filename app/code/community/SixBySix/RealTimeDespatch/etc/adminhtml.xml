@@ -48,6 +48,10 @@
                     <title>Schedule</title>
                     <action>adminhtml/processSchedule</action>
                 </schedule>
+                <settings module="realtimedespatch">
+                    <title>Settings</title>
+                    <action>adminhtml/system_config/edit/section/sixbysix_realtimedespatch/</action>
+                </settings>
             </children>
         </realtimedespatch>
     </menu>
