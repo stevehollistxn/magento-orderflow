@@ -80,6 +80,9 @@ class SixBySix_RealTimeDespatch_Model_Sales_Order extends Mage_Sales_Model_Order
      */
     public function export(\DateTime $exportedAt = null)
     {
+       if ($exportedAt === null) {
+            $exportedAt = new \DateTime();
+       }
        $this->setIsExported(true)
             ->setExportFailures(0)
             ->setExportedAt($exportedAt->format('Y-m-d H:i:s'))

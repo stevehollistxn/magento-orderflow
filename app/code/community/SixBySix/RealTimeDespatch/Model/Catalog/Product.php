@@ -98,6 +98,9 @@ class SixBySix_RealTimeDespatch_Model_Catalog_Product extends Mage_Catalog_Model
      */
     public function export(\DateTime $exportedAt = null)
     {
+	    if ($exportedAt === null) {
+		    $exportedAt = new \DateTime();
+	    }
        $this->setIsExported(true)
             ->setExportedTimestamp(true)
             ->setExportedAt($exportedAt->format('Y-m-d H:i:s'));
