@@ -18,7 +18,8 @@ class SixBySix_RealTimeDespatch_Model_Service_Importer_Inventory extends SixBySi
             $sku               = $body->key;
             $unitsReceived     = (int) $body->value;
             $productId         = Mage::getModel("catalog/product")->getIdBySku($body->key);
-            $lastOrderExported = isset($body->lastOrderExported) ? new DateTime($body->lastOrderExported) : new DateTime;
+            $lastOrderExported = Mage::getSingleton('core/date')
+	            ->gmtDate('Y-m-d H:i:s', isset($body->lastOrderExported) ? $body->lastOrderExported : NULL);
 
             if ( ! $productId) {
                 $reportLines[] = $this->_createFailureReportLine(
@@ -118,7 +119,7 @@ class SixBySix_RealTimeDespatch_Model_Service_Importer_Inventory extends SixBySi
      *
      * @param integer  $productId
      * @parem integer  $unitsReceived
-     * @param DateTime $lastOrderExported
+     * @param string $lastOrderExported
      *
      * @return Varien_Object
      */
@@ -143,7 +144,8 @@ class SixBySix_RealTimeDespatch_Model_Service_Importer_Inventory extends SixBySi
     public function getSupersedingImportLine($sku, $sequenceId)
     {
         /** @var SixBySix_RealTimeDespatch_Model_Import_Line $importLine */
-        $importLine = SixBySix_RealTimeDespatch_Model_Resource_Import_Line_Collection::getLatestImportLineByReference(
+	    $importLine = Mage::getResourceModel('realtimedespatch/import_line_collection')
+            ->getLatestImportLineByReference(
             $this->_getEntity(),
             $sku
         );

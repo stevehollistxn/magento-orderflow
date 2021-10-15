@@ -96,15 +96,13 @@ class SixBySix_RealTimeDespatch_Model_Catalog_Product extends Mage_Catalog_Model
     /**
      * {@inheritdoc]
      */
-    public function export(\DateTime $exportedAt = null)
+    public function export(Zend_Date $exportedAt = null)
     {
-	    if ($exportedAt === null) {
-		    $exportedAt = new \DateTime();
-	    }
-       $this->setIsExported(true)
-            ->setExportedTimestamp(true)
-            ->setExportedAt($exportedAt->format('Y-m-d H:i:s'));
+	    $exportedAt = Mage::app()->getLocale()->date($exportedAt);
+		$this->setIsExported(true)
+		    ->setExportedTimestamp(true)
+		    ->setExportedAt($exportedAt->toString('Y-m-d H:i:s'));
 
-        return $this;
+		return $this;
     }
 }

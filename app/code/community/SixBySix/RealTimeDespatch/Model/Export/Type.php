@@ -9,11 +9,11 @@ abstract class SixBySix_RealTimeDespatch_Model_Export_Type extends Mage_Core_Mod
      * Updates the entities associated with the export.
      *
      * @param mixed     $lines
-     * @param \DateTime $exportedAt
+     * @param Zend_Date $exportedAt
      *
      * @return void
      */
-    public abstract function updateEntities($lines, \DateTime $exportedAt);
+    public abstract function updateEntities($lines, Zend_Date $exportedAt);
 
     /**
      * Sends the export failure emails following export four failures.

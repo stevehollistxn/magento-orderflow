@@ -26,7 +26,7 @@ class SixBySix_RealTimeDespatch_Model_Observer_Order_Grid
 			        'index' => 'is_exported',
 			        'type' => 'options',
 			        'options' => array(1 => 'True', 0 => 'False'),
-			        'renderer' => new SixBySix_RealTimeDespatch_Block_Adminhtml_Renderer_Exported(),
+			        'renderer' => 'realtimedespatch/adminhtml_renderer_exported',
 			        'align' => 'center'
 		        ),
 		        'status'

@@ -62,7 +62,7 @@ class SixBySix_RealTimeDespatch_Block_Adminhtml_Requests_Lines_Grid extends Mage
             'width'    => '150px',
             'index'    => 'processed',
             'type'     => 'datetime',
-            'renderer' => new SixBySix_RealTimeDespatch_Block_Adminhtml_Renderer_Processed(),
+            'renderer' => 'realtimedespatch/adminhtml_renderer_processed',
         ));
 
         Mage::dispatchEvent('adminhtml_orderflow_request_lines_grid_prepare_columns', array('block' => $this));

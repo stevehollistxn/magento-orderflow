@@ -71,7 +71,7 @@ class SixBySix_RealTimeDespatch_Model_Observer_Exception
             array(
                 array(
                     'severity'    => Mage_AdminNotification_Model_Inbox::SEVERITY_MAJOR,
-                    'date_added'  => date('Y-m-d H:i:s'),
+                    'date_added'  => Mage::getSingleton('core/date')->gmtDate('Y-m-d H:i:s'),
                     'title'       => 'A recent Realtime Despatch OrderFlow sync failed - ['.$entity.']['.$type.']',
                     'description' => $ex->getMessage(),
                     'url'         => '',

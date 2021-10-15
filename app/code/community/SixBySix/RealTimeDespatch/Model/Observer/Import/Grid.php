@@ -26,7 +26,7 @@ class SixBySix_RealTimeDespatch_Model_Observer_Import_Grid
                 'header'   => Mage::helper('realtimedespatch')->__('Unique Order IDs'),
                 'align'    =>'left',
                 'index'    => 'message',
-                'renderer' => new SixBySix_RealTimeDespatch_Block_Adminhtml_Renderer_Total_Imports(),
+                'renderer' => 'realtimedespatch/adminhtml_renderer_total_imports',
             ),
             'message_id'
         );

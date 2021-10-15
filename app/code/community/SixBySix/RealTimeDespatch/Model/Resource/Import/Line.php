@@ -14,4 +14,15 @@ class SixBySix_RealTimeDespatch_Model_Resource_Import_Line extends Mage_Core_Mod
     {
         $this->_init('realtimedespatch/import_line', 'entity_id');
     }
+
+	/**
+	 * {@inheritdoc}
+	 */
+	protected function _beforeSave(Mage_Core_Model_Abstract $object)
+	{
+		if (!$object->getId()) {
+			$object->setCreated(Mage::getSingleton('core/date')->gmtDate());
+		}
+		return $this;
+	}
 }

@@ -72,14 +72,14 @@ class SixBySix_RealTimeDespatch_Block_Adminhtml_Imports_Grid extends Mage_Adminh
             'header'   => Mage::helper('realtimedespatch')->__('Message ID'),
             'align'    => 'left',
             'index'    => 't3.message_id',
-            'renderer' => new SixBySix_RealTimeDespatch_Block_Adminhtml_Renderer_Request_Id(),
+            'renderer' => 'realtimedespatch/adminhtml_renderer_request_id',
         ));
 
         $this->addColumn('reference', array(
             'header'   => Mage::helper('realtimedespatch')->__($this->getReferenceLabel()),
             'align'    => 'left',
             'index'    => 'reference',
-            'renderer' => new SixBySix_RealTimeDespatch_Block_Adminhtml_Renderer_Total_Imports(),
+            'renderer' => 'realtimedespatch/adminhtml_renderer_total_imports',
         ));
 
         $this->addColumn('successes', array(

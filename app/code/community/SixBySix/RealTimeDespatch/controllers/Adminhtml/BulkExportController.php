@@ -53,7 +53,7 @@ class SixBySix_RealTimeDespatch_Adminhtml_BulkExportController extends Mage_Admi
                 'type'
             );
 
-            $export->setExecuted(date('Y-m-d h:i:s'));
+            $export->setExecuted(Mage::getSingleton('core/date')->gmtDate('Y-m-d h:i:s'));
             $export->save();
 
             Mage::getSingleton('core/session')->addSuccess(

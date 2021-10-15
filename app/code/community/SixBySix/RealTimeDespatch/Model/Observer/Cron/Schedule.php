@@ -58,7 +58,8 @@ class SixBySix_RealTimeDespatch_Model_Observer_Cron_Schedule
     {
         $isNew             = $schedule->isObjectNew();
         $parts             = explode('_', $schedule->getJobCode());
-        $scheduleWithItems = SixBySix_RealTimeDespatch_Model_Resource_Process_Schedule_Collection::getLastScheduleWithItems($parts[0]);
+        $scheduleWithItems = Mage::getResourceModel('realtimedespatch/process_schedule_collection')
+	        ->getLastScheduleWithItems($parts[0]);
 
         $schedule = Mage::getModel('realtimedespatch/process_schedule')
             ->load($schedule->getId(), 'cron_id')
@@ -70,7 +71,7 @@ class SixBySix_RealTimeDespatch_Model_Observer_Cron_Schedule
             ->setEntity($parts[1]);
 
         if ($schedule->getStatus() == Mage_Cron_Model_Schedule::STATUS_MISSED) {
-            $schedule->setExecuted(date('Y-m-d H:i:s'));
+            $schedule->setExecuted(Mage::getSingleton('core/date')->gmtDate('Y-m-d H:i:s'));
         }
 
         if (( ! $schedule->getParentId() && ! $isNew) && $scheduleWithItems->getId()) {

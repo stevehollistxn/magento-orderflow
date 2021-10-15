@@ -64,7 +64,7 @@ class SixBySix_RealTimeDespatch_Block_Adminhtml_Exports_Grid extends Mage_Adminh
             'header'   => Mage::helper('realtimedespatch')->__($this->getReferenceLabel()),
             'align'    => 'left',
             'index'    => 'reference',
-            'renderer' => new SixBySix_RealTimeDespatch_Block_Adminhtml_Renderer_Total_Exports(),
+            'renderer' => 'realtimedespatch/adminhtml_renderer_total_exports',
         ));
 
         $this->addColumn('successes', array(

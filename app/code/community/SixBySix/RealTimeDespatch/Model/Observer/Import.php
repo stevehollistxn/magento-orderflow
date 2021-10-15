@@ -17,7 +17,7 @@ class SixBySix_RealTimeDespatch_Model_Observer_Import
         $report       = $event->getReport();
         $reportLines  = $report->getLines();
         $import       = $this->_createImport($report);
-        $processed    = date('Y-m-d H:i:s');
+        $processed    = Mage::getSingleton('core/date')->gmtDate('Y-m-d H:i:s');
 
         $tx = Mage::getModel('core/resource_transaction');
         $tx->addObject($import);
@@ -111,7 +111,7 @@ class SixBySix_RealTimeDespatch_Model_Observer_Import
      */
     protected function _updateProcessSchedule($import)
     {
-        $executed = date('Y-m-d H:i:s');
+        $executed = Mage::getSingleton('core/date')->gmtDate('Y-m-d H:i:s');
         $schedule = Mage::getModel('realtimedespatch/process_schedule')
             ->getCollection()
             ->addFieldToFilter('status', array(array('eq' => 'pending'), array('eq' => 'processing')))
@@ -167,7 +167,7 @@ class SixBySix_RealTimeDespatch_Model_Observer_Import
             array(
                 array(
                     'severity'    => Mage_AdminNotification_Model_Inbox::SEVERITY_MAJOR,
-                    'date_added'  => date('Y-m-d H:i:s'),
+                    'date_added'  => Mage::getSingleton('core/date')->gmtDate('Y-m-d H:i:s'),
                     'title'       => 'A recent Realtime Despatch OrderFlow sync reported problems.',
                     'description' => 'Please check the corresponding import for details',
                     'url'         => $import->getAdminUrl(),

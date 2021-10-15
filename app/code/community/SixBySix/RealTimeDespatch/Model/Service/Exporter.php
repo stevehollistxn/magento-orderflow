@@ -17,7 +17,7 @@ abstract class SixBySix_RealTimeDespatch_Model_Service_Exporter
     /**
      * Exported At.
      *
-     * @var DateTime
+     * @var string
      */
     protected $_exportedAt;
 
@@ -49,7 +49,7 @@ abstract class SixBySix_RealTimeDespatch_Model_Service_Exporter
 
         try
         {
-            $this->_exportedAt = new \DateTime;
+            $this->_exportedAt = Mage::getSingleton('core/date')->gmtDate('Y-m-d H:i:s');
             $report            = $this->_export($entities);
 
             $this->_dispatchEvent(

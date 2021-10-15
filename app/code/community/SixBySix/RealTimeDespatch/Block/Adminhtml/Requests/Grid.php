@@ -64,13 +64,13 @@ class SixBySix_RealTimeDespatch_Block_Adminhtml_Requests_Grid extends Mage_Admin
             'header'   => Mage::helper('realtimedespatch')->__('OrderFlow ID'),
             'align'    => 'left',
             'index'    => 'message_id',
-            'renderer' => new SixBySix_RealTimeDespatch_Block_Adminhtml_Renderer_Request_Id(),
+            'renderer' => 'realtimedespatch/adminhtml_renderer_request_id',
         ));
 
         $this->addColumn('import_id', array(
             'header'   => Mage::helper('realtimedespatch')->__('Import ID'),
             'align'    => 'left',
-            'renderer' => new SixBySix_RealTimeDespatch_Block_Adminhtml_Renderer_Import_Id(),
+            'renderer' => 'realtimedespatch/adminhtml_renderer_import_id',
         ));
 
         $this->addColumn('type', array(
@@ -99,7 +99,7 @@ class SixBySix_RealTimeDespatch_Block_Adminhtml_Requests_Grid extends Mage_Admin
             'index'        => 'processed',
             'filter_index' => 'processed',
             'type'         => 'datetime',
-            'renderer'     => new SixBySix_RealTimeDespatch_Block_Adminhtml_Renderer_Processed(),
+            'renderer'     => 'realtimedespatch/adminhtml_renderer_processed',
         ));
 
         $this->addColumn('action',

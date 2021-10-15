@@ -38,7 +38,7 @@ class SixBySix_RealTimeDespatch_Model_Observer_Import_Lines_Grid
                 'align'    =>'left',
                 'index'    => 'reference',
                  'filter'  => false,
-                'renderer' => new SixBySix_RealTimeDespatch_Block_Adminhtml_Renderer_Inventory_Received(),
+                'renderer' => 'realtimedespatch/adminhtml_renderer_inventory_received',
             ),
             'reference'
         );
@@ -62,7 +62,7 @@ class SixBySix_RealTimeDespatch_Model_Observer_Import_Lines_Grid
                 'align'    =>'left',
                 'index'    => 'reference',
                  'filter'  => false,
-                'renderer' => new SixBySix_RealTimeDespatch_Block_Adminhtml_Renderer_Inventory_Adjustments_Order(),
+                'renderer' => 'realtimedespatch/adminhtml_renderer_inventory_adjustments_order',
             ),
             'quote_adjustments'
         );
@@ -74,7 +74,7 @@ class SixBySix_RealTimeDespatch_Model_Observer_Import_Lines_Grid
                 'align'    =>'left',
                 'index'    => 'reference',
                  'filter'  => false,
-                'renderer' => new SixBySix_RealTimeDespatch_Block_Adminhtml_Renderer_Inventory_Updated(),
+                'renderer' => 'realtimedespatch/adminhtml_renderer_inventory_updated',
             ),
             'order_adjustments'
         );
@@ -103,7 +103,7 @@ class SixBySix_RealTimeDespatch_Model_Observer_Import_Lines_Grid
                 'header'   => Mage::helper('realtimedespatch')->__('Order ID'),
                 'align'    =>'left',
                 'index'    => 'message',
-                'renderer' => new SixBySix_RealTimeDespatch_Block_Adminhtml_Renderer_Shipment_Order_Reference(),
+                'renderer' => 'realtimedespatch/adminhtml_renderer_shipment_order_reference',
             ),
             'order_id'
         );

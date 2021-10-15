@@ -109,7 +109,7 @@ class SixBySix_RealTimeDespatch_Helper_Import_Inventory extends Mage_Core_Helper
      */
     public function getActiveQuoteCutoffDate()
     {
-        return date('Y-m-d H:i:s', strtotime('-'.$this->getActiveQuoteCutoff().' days'));
+        return Mage::getSingleton('core/date')->gmtDate('Y-m-d H:i:s', strtotime('-'.$this->getActiveQuoteCutoff().' days'));
     }
 
     /**
@@ -129,7 +129,7 @@ class SixBySix_RealTimeDespatch_Helper_Import_Inventory extends Mage_Core_Helper
      */
     public function getUnsentOrderCutoffDate()
     {
-        return date('Y-m-d H:i:s', strtotime('-'.$this->getUnsentOrderCutoff().' days'));
+        return Mage::getSingleton('core/date')->gmtDate('Y-m-d H:i:s', strtotime('-'.$this->getUnsentOrderCutoff().' days'));
     }
 
     /**

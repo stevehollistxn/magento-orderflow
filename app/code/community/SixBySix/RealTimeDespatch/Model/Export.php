@@ -105,11 +105,11 @@ class SixBySix_RealTimeDespatch_Model_Export extends Mage_Core_Model_Abstract
     /**
      * Updates the entities attached to the export.
      *
-     * @param \DateTime  $exportedAt
+     * @param Zend_Date  $exportedAt
      *
      * @return SixBySix_RealTimeDespatch_Model_Export
      */
-    public function updateEntities(\DateTime $exportedAt)
+    public function updateEntities(Zend_Date $exportedAt)
     {
         $this->getTypeInstance()->updateEntities(
             $this->getLines(),

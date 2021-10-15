@@ -51,7 +51,7 @@ class SixBySix_RealTimeDespatch_Block_Adminhtml_Process_Schedule_Grid extends Ma
             'header'   => Mage::helper('realtimedespatch')->__('Process'),
             'align'    => 'left',
             'index'    => 'entity',
-            'renderer' => new SixBySix_RealTimeDespatch_Block_Adminhtml_Renderer_Process_Name(),
+            'renderer' => 'realtimedespatch/adminhtml_renderer_process_name',
             'type'     => 'options',
             'options'  => array(
                 'Product'   => 'Product Export',
@@ -65,34 +65,40 @@ class SixBySix_RealTimeDespatch_Block_Adminhtml_Process_Schedule_Grid extends Ma
             'header'   => Mage::helper('realtimedespatch')->__('Message ID'),
             'align'    =>'left',
             'index'    => 'message_id',
-            'renderer' => new SixBySix_RealTimeDespatch_Block_Adminhtml_Renderer_Process_Message_ID(),
+            'renderer' => 'realtimedespatch/adminhtml_renderer_process_message_ID',
         ));
 
         $this->addColumn('scheduled', array(
             'header' => Mage::helper('realtimedespatch')->__('Scheduled'),
             'align'  =>'left',
             'index'  => 'scheduled',
+	        'type'   => 'datetime',
+	        'width'  => '150px'
         ));
 
         $this->addColumn('executed', array(
             'header'   => Mage::helper('realtimedespatch')->__('Executed'),
             'align'    =>'left',
             'index'    => 'executed',
-            'renderer' => new SixBySix_RealTimeDespatch_Block_Adminhtml_Renderer_Process_Executed(),
+	        'type'   => 'datetime',
+	        'width'  => '150px',
+            'renderer' => 'realtimedespatch/adminhtml_renderer_process_executed',
         ));
 
         $this->addColumn('status', array(
             'header'   => Mage::helper('realtimedespatch')->__('Status'),
             'align'    =>'left',
             'index'    => 'status',
-            'renderer' => new SixBySix_RealTimeDespatch_Block_Adminhtml_Renderer_Process_Status(),
+            'renderer' => 'realtimedespatch/adminhtml_renderer_process_status',
         ));
 
 	    $this->addColumn('Previous exchange', array(
 		    'header'   => Mage::helper('realtimedespatch')->__('Previous exchange'),
 		    'align'    =>'left',
 		    'index'    => 'last_executed_with_items',
-		    'renderer' => new SixBySix_RealTimeDespatch_Block_Adminhtml_Renderer_Process_Executed_With_Items(),
+		    'type'     => 'datetime',
+		    'width'    => '150px',
+		    'renderer' => 'realtimedespatch/adminhtml_renderer_process_executed_with_items',
 	    ));
 
         return parent::_prepareColumns();

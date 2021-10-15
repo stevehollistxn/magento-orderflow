@@ -78,14 +78,12 @@ class SixBySix_RealTimeDespatch_Model_Sales_Order extends Mage_Sales_Model_Order
     /**
      * {@inheritdoc]
      */
-    public function export(\DateTime $exportedAt = null)
+    public function export(Zend_Date $exportedAt = null)
     {
-       if ($exportedAt === null) {
-            $exportedAt = new \DateTime();
-       }
+    	$exportedAt = Mage::app()->getLocale()->date($exportedAt);
        $this->setIsExported(true)
             ->setExportFailures(0)
-            ->setExportedAt($exportedAt->format('Y-m-d H:i:s'))
+            ->setExportedAt($exportedAt->toString('Y-m-d H:i:s'))
             ->addStatusHistoryComment(
                 'Order Exported to OrderFlow'
             );

@@ -154,7 +154,7 @@ abstract class SixBySix_RealTimeDespatch_Model_Service_Importer
             'result'         => $result,
             'operation'      => 'Update',
             'entity'         => $this->_getEntity(),
-            'timestamp'      => date('Y-m-d H:i:s'),
+            'timestamp'      => Mage::getSingleton('core/date')->gmtDate('Y-m-d H:i:s'),
             'additionalData' => $additionalData
         ));
     }
@@ -172,7 +172,7 @@ abstract class SixBySix_RealTimeDespatch_Model_Service_Importer
             return true;
         }
 
-        return SixBySix_RealTimeDespatch_Model_Resource_Request_Line_Collection::isDuplicate(
+	    return Mage::getResourceModel('realtimedespatch/request_line_collection')->isDuplicate(
             $this->_getEntity(),
             $reference
         );

@@ -24,7 +24,7 @@ class SixBySix_RealTimeDespatch_Model_Observer_Export
         $report      = $event->getReport();
         $reportLines = $report->getLines();
         $export      = $this->_createExport($report);
-        $exportedAt  = $event['exportedAt'];
+        $exportedAt  = Mage::app()->getLocale()->date($event['exportedAt']);
 
         $export->setRequestBody($event['requestBody']);
         $export->setResponseBody($event['responseBody']);
@@ -89,9 +89,21 @@ class SixBySix_RealTimeDespatch_Model_Observer_Export
         $exportLine->setEntity($export->getEntity());
         $exportLine->setMessage($reportLine->getMessage());
         $exportLine->setDetail($reportLine->getDetail());
-        $exportLine->setProcessed($reportLine->getTimestamp());
+        // @todo this needs to take into account OrderFlow timezone
+	    $processed = $this->_convertTimestampToGMT($reportLine->getTimestamp());
+        $exportLine->setProcessed($processed->toString(Varien_Date::DATETIME_INTERNAL_FORMAT));
 
         return $exportLine;
+    }
+
+    protected function _convertTimestampToGMT($timestamp)
+    {
+	    return Mage::app()->getLocale()->utcDate(
+		    null,
+		    $timestamp,
+		    true,
+		    Varien_Date::DATETIME_INTERNAL_FORMAT
+	    );
     }
 
     /**
@@ -128,7 +140,7 @@ class SixBySix_RealTimeDespatch_Model_Observer_Export
      */
     protected function _createProcessSchedule($export)
     {
-        $executed = date('Y-m-d H:i:s');
+        $executed = Mage::getSingleton('core/date')->gmtDate('Y-m-d H:i:s');
         $schedule = Mage::getModel('realtimedespatch/process_schedule')
             ->setType(strtolower($export->getType()))
             ->setEntity(strtolower($export->getEntity()))
@@ -166,7 +178,7 @@ class SixBySix_RealTimeDespatch_Model_Observer_Export
      */
     protected function _updateProcessSchedule($export)
     {
-        $executed = date('Y-m-d H:i:s');
+        $executed = Mage::getSingleton('core/date')->gmtDate('Y-m-d H:i:s');
         $schedule = Mage::getModel('realtimedespatch/process_schedule')
             ->getCollection()
             ->addFieldToFilter('status', array(array('eq' => 'pending'), array('eq' => 'processing')))
@@ -222,7 +234,7 @@ class SixBySix_RealTimeDespatch_Model_Observer_Export
             array(
                 array(
                     'severity'    => Mage_AdminNotification_Model_Inbox::SEVERITY_MAJOR,
-                    'date_added'  => date('Y-m-d H:i:s'),
+                    'date_added'  => Mage::getSingleton('core/date')->gmtDate('Y-m-d H:i:s'),
                     'title'       => 'A recent Realtime Despatch OrderFlow sync reported problems.',
                     'description' => 'Please check the corresponding export for details',
                     'url'         => $export->getAdminUrl(),

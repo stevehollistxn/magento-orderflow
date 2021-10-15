@@ -26,7 +26,7 @@ class SixBySix_RealTimeDespatch_Model_Inventory_Calculator
      *
      * @param integer  $productId               The ID of the product.
      * @param integer  $unitsReceived           The number of units received from orderfow.
-     * @param DateTime $inventoryLastCalculated Timestamp indicating when the inventory was last calculated.
+     * @param string   $inventoryLastCalculated Timestamp indicating when the inventory was last calculated.
      *
      * @return \Varien_Object
      */
@@ -53,7 +53,7 @@ class SixBySix_RealTimeDespatch_Model_Inventory_Calculator
      * orders that have been exported to OrderFlow after it's inventory calculation.
      *
      * @param integer  $productId
-     * @param DateTime $inventoryLastCalculated
+     * @param string $inventoryLastCalculated
      *
      * @return integer
      */
@@ -72,7 +72,7 @@ class SixBySix_RealTimeDespatch_Model_Inventory_Calculator
         $sfo          = $resource->getTableName('sales_flat_order');
         $sfoi         = $resource->getTableName('sales_flat_order_item');
         $sql          = "SELECT SUM(qty_ordered) AS qty_unsent FROM ".$sfo." AS sfo INNER JOIN ".$sfoi." AS sfoi ON sfo.entity_id = sfoi.order_id WHERE (sfo.status IN ('".implode("','", $this->_helper->getValidUnsentOrderStatuses())."')) AND (sfo.is_virtual = 0) AND (sfo.updated_at > ?) AND ((sfo.is_exported = 0) OR (sfo.exported_at > ?)) AND (sfoi.product_id = ?) GROUP BY sfoi.product_id";
-        $unsentUnits  = (integer) $conn->fetchOne($sql, array($cutoffDate, $inventoryLastCalculated->format('Y-m-d H:i:s'), $productId));
+        $unsentUnits  = (integer) $conn->fetchOne($sql, array($cutoffDate, $inventoryLastCalculated, $productId));
 
         return max(0, $unsentUnits);
     }
