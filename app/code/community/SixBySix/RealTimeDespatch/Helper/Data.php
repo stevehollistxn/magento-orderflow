@@ -51,7 +51,12 @@ class SixBySix_RealTimeDespatch_Helper_Data extends Mage_Core_Helper_Abstract
      */
     public function getApiEndpoint()
     {
-        return (string) Mage::getStoreConfig('realtimedespatch/general/endpoint');
+        $endpoint = (string) Mage::getStoreConfig('realtimedespatch/general/endpoint');
+        if (!empty($endpoint)) {
+        	$endpoint = rtrim($endpoint, '/') . '/';
+        }
+
+        return $endpoint;
     }
 
     /**
