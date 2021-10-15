@@ -13,7 +13,7 @@ class SixBySix_RealTimeDespatch_Block_Adminhtml_Requests_View extends Mage_Admin
     public function __construct()
     {
         $this->_blockGroup = 'realtimedespatch';
-        $this->_controller = 'adminhtml_requests_view';
+        $this->_controller = 'adminhtml_requests';
 
         parent::__construct();
 

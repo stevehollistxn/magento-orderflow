@@ -13,7 +13,7 @@ class SixBySix_RealTimeDespatch_Block_Adminhtml_Exports_View extends Mage_Adminh
     public function __construct()
     {
         $this->_blockGroup = 'realtimedespatch';
-        $this->_controller = 'adminhtml_exports_view';
+        $this->_controller = 'adminhtml_exports';
 
         parent::__construct();
 

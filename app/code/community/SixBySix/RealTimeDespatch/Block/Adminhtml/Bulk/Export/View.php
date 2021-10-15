@@ -13,7 +13,7 @@ class SixBySix_RealTimeDespatch_Block_Adminhtml_Bulk_Export_View extends Mage_Ad
     public function __construct()
     {
         $this->_blockGroup = 'realtimedespatch';
-        $this->_controller = 'adminhtml_bulk_export_view';
+        $this->_controller = 'adminhtml_bulk_export';
 
         parent::__construct();
 
