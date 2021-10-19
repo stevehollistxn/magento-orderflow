@@ -160,6 +160,7 @@
             <realtimedespatch_setup>
                 <setup>
                     <module>SixBySix_RealTimeDespatch</module>
+                    <class>SixBySix_RealTimeDespatch_Model_Resource_Setup</class>
                 </setup>
             </realtimedespatch_setup>
         </resources>

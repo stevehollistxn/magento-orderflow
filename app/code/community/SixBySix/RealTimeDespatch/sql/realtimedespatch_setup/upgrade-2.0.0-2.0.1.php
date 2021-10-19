@@ -1,11 +1,12 @@
 <?php
 
-/* @var $installer Mage_Core_Model_Resource_Setup */
+/* @var $installer SixBySix_RealTimeDespatch_Model_Resource_Setup */
 $installer = $this;
 $installer->startSetup();
 
-// Disable Symlinks - a security risk and was only required for composter version of Varien_Autoload
+// Disable Symlinks - a security risk and was only required for composer version of Varien_Autoload
 Mage::getConfig()->saveConfig('dev/template/allow_symlink', '0', 'default', 0);
+
 // Update core_config_data with updated config paths
 $collection = Mage::getModel('core/config_data')
 	->getCollection()
@@ -49,5 +50,12 @@ foreach ($tables as $table) {
 		)
 	);
 }
+
+// remove unused order attributes/attribute group
+foreach (array('is_exported', 'exported_at', 'export_failures') as $attribute) {
+	$installer->removeAttribute(Mage_Sales_Model_Order::ENTITY, $attribute);
+}
+$attributeSetId = $this->getAttributeSetId(Mage_Sales_Model_Order::ENTITY, 'Default');
+$installer->removeAttributeGroup(Mage_Sales_Model_Order::ENTITY, $attributeSetId, 'OrderFlow');
 
 $installer->endSetup();
