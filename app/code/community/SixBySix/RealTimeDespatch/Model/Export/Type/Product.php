@@ -39,7 +39,7 @@ class SixBySix_RealTimeDespatch_Model_Export_Type_Product extends SixBySix_RealT
      * Updates the orders that have successfully exported.
      *
      * @param array    $successIds
-     * @param Zend_Date $exportedAt
+     * @param DateTime $exportedAt
      *
      * @return void
      */

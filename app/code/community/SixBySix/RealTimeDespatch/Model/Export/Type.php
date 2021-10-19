@@ -9,7 +9,7 @@ abstract class SixBySix_RealTimeDespatch_Model_Export_Type extends Mage_Core_Mod
      * Updates the entities associated with the export.
      *
      * @param mixed     $lines
-     * @param Zend_Date $exportedAt
+     * @param DateTime $exportedAt
      *
      * @return void
      */

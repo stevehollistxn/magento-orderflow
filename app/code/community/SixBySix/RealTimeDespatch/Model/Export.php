@@ -105,7 +105,7 @@ class SixBySix_RealTimeDespatch_Model_Export extends Mage_Core_Model_Abstract
     /**
      * Updates the entities attached to the export.
      *
-     * @param Zend_Date  $exportedAt
+     * @param DateTime  $exportedAt
      *
      * @return SixBySix_RealTimeDespatch_Model_Export
      */
