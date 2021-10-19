@@ -8,7 +8,7 @@ class SixBySix_RealTimeDespatch_Model_Export_Type_Product extends SixBySix_RealT
     /**
      * {@inheritdoc}
      */
-    public function updateEntities($lines, Zend_Date $exportedAt)
+    public function updateEntities($lines, DateTime $exportedAt)
     {
         $successIds  = array();
         $failureIds  = array();
@@ -43,9 +43,11 @@ class SixBySix_RealTimeDespatch_Model_Export_Type_Product extends SixBySix_RealT
      *
      * @return void
      */
-    protected function _updateSuccessfulImports($successIds, Zend_Date $exportedAt)
+    protected function _updateSuccessfulImports($successIds, DateTime $exportedAt)
     {
-        $successData = array('is_exported' => 1, 'exported_at' => $exportedAt->toString('Y-m-d H:i:s'), 'export_failures' => 0);
+    	// $exportedAt in OrderFlow timezone. Convert to UTC/GMT before updating Magento product
+	    $exportedAt->setTimezone(new DateTimeZone('UTC'));
+        $successData = array('is_exported' => 1, 'exported_at' => $exportedAt->format('Y-m-d H:i:s'), 'export_failures' => 0);
 
         Mage::getSingleton('catalog/product_action')->updateAttributes(
             $successIds,

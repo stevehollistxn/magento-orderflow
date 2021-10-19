@@ -94,14 +94,18 @@ class SixBySix_RealTimeDespatch_Model_Catalog_Product extends Mage_Catalog_Model
     }
 
     /**
-     * {@inheritdoc]
+     * Applies bespoke logic to confirm an export.
+     *
+     * @todo 19/10/2021 This method isn't called anywhere, but is required by interface - redundant?
+     * @return mixed
      */
-    public function export(Zend_Date $exportedAt = null)
+    public function export(DateTime $exportedAt)
     {
-	    $exportedAt = Mage::app()->getLocale()->date($exportedAt);
+	    // $exportedAt in OrderFlow timezone. Convert to UTC/GMT before saving order
+	    $exportedAt->setTimezone(new DateTimeZone('UTC'));
 		$this->setIsExported(true)
 		    ->setExportedTimestamp(true)
-		    ->setExportedAt($exportedAt->toString('Y-m-d H:i:s'));
+		    ->setExportedAt($exportedAt->format('Y-m-d H:i:s'));
 
 		return $this;
     }

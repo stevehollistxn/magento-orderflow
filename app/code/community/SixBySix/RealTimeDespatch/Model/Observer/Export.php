@@ -24,7 +24,8 @@ class SixBySix_RealTimeDespatch_Model_Observer_Export
         $report      = $event->getReport();
         $reportLines = $report->getLines();
         $export      = $this->_createExport($report);
-        $exportedAt  = Mage::app()->getLocale()->date($event['exportedAt']);
+        /* @var $exportedAt DateTime */
+        $exportedAt  = $event['exportedAt'];
 
         $export->setRequestBody($event['requestBody']);
         $export->setResponseBody($event['responseBody']);

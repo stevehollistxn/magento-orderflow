@@ -78,12 +78,13 @@ class SixBySix_RealTimeDespatch_Model_Sales_Order extends Mage_Sales_Model_Order
     /**
      * {@inheritdoc]
      */
-    public function export(Zend_Date $exportedAt = null)
+    public function export(DateTime $exportedAt)
     {
-    	$exportedAt = Mage::app()->getLocale()->date($exportedAt);
+	   // $exportedAt in OrderFlow timezone. Convert to UTC/GMT before saving order
+	   $exportedAt->setTimezone(new DateTimeZone('UTC'));
        $this->setIsExported(true)
             ->setExportFailures(0)
-            ->setExportedAt($exportedAt->toString('Y-m-d H:i:s'))
+            ->setExportedAt($exportedAt->format('Y-m-d H:i:s'))
             ->addStatusHistoryComment(
                 'Order Exported to OrderFlow'
             );

@@ -15,7 +15,7 @@ abstract class SixBySix_RealTimeDespatch_Model_Service_Exporter
     protected $_service;
 
     /**
-     * Exported At.
+     * Exported At - date/timestamp in Orderflow configured timezone
      *
      * @var string
      */
@@ -49,7 +49,9 @@ abstract class SixBySix_RealTimeDespatch_Model_Service_Exporter
 
         try
         {
-            $this->_exportedAt = Mage::getSingleton('core/date')->gmtDate('Y-m-d H:i:s');
+        	// Exported date shown in Orderflow, so this must match the Orderflow timezone
+	        $timezone = Mage::helper('realtimedespatch')->getTimezone();
+	        $this->_exportedAt = new DateTime("now", new DateTimeZone($timezone));
             $report            = $this->_export($entities);
 
             $this->_dispatchEvent(

@@ -236,6 +236,7 @@
                 <is_enabled>0</is_enabled>
                 <admin_name></admin_name>
                 <admin_email>test@example.com</admin_email>
+                <timezone>Europe/London</timezone>
                 <endpoint></endpoint>
                 <username></username>
                 <organisation></organisation>

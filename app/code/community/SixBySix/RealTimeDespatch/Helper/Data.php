@@ -44,6 +44,16 @@ class SixBySix_RealTimeDespatch_Helper_Data extends Mage_Core_Helper_Abstract
         return (string) Mage::getStoreConfig('realtimedespatch/general/admin_email');
     }
 
+	/**
+	 * Returns the Orderflow timezone.
+	 *
+	 * @return string
+	 */
+	public function getTimezone()
+	{
+		return (string) Mage::getStoreConfig('realtimedespatch/general/timezone');
+	}
+
     /**
      * Returns the API Endpoint.
      *
