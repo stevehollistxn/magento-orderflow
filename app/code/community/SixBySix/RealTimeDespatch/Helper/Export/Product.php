@@ -49,7 +49,7 @@ class SixBySix_RealTimeDespatch_Helper_Export_Product extends Mage_Core_Helper_A
         return Mage::getModel('catalog/product')
                 ->getCollection()
                 ->addAttributeToSelect('*')
-                ->addAttributeToFilter('type_id', 'simple')
+                ->addAttributeToFilter('type_id', Mage_Catalog_Model_Product_Type::SIMPLE)
                 ->addAttributeToFilter(
                     array(
                         array('attribute' => 'export_failures', 'null' => true),

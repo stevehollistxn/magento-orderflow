@@ -37,6 +37,13 @@ class SixBySix_RealTimeDespatch_Adminhtml_RequestsController extends Mage_Adminh
         $id      = $this->getRequest()->getParam('id');
         $request = Mage::getModel('realtimedespatch/request')->load($id);
 
+	    if (!$request->getId()) {
+		    $this->_getSession()->addError($this->__('Request does not exist.'));
+
+		    $this->_redirect('*/*/index');
+		    return $this;
+	    }
+
         $this->loadLayout();
 
         $this->getLayout()
@@ -60,11 +67,11 @@ class SixBySix_RealTimeDespatch_Adminhtml_RequestsController extends Mage_Adminh
 
         if ( ! $request->getId()) {
             $this->_redirect('*/*/');
-            return;
+            return $this;
         }
 
         if ( ! $request->canProcess()) {
-            Mage::getSingleton('core/session')->addError(
+            $this->_getSession()->addError(
                 'This request has already been processed.'
             );
 
@@ -77,11 +84,11 @@ class SixBySix_RealTimeDespatch_Adminhtml_RequestsController extends Mage_Adminh
             $service = $factory->retrieve($request->getType());
             $service->import($request);
 
-            Mage::getSingleton('core/session')->addSuccess(
+            $this->_getSession()->addSuccess(
                 'The request has been successfully processed.'
             );
         } catch (Exception $ex) {
-            Mage::getSingleton('core/session')->addError(
+            $this->_getSession()->addError(
                 'Error processing request: '.$ex->getMessage()
             );
         }
@@ -100,7 +107,7 @@ class SixBySix_RealTimeDespatch_Adminhtml_RequestsController extends Mage_Adminh
         $requests = Mage::getResourceModel('realtimedespatch/request_collection')->getAllProcessableRequests();
 
         if (count($requests) == 0) {
-            Mage::getSingleton('core/session')->addError(
+            $this->_getSession()->addError(
                 'There are no requests available to be processed.'
             );
 
@@ -114,11 +121,11 @@ class SixBySix_RealTimeDespatch_Adminhtml_RequestsController extends Mage_Adminh
                 $service->import($request);
             }
 
-            Mage::getSingleton('core/session')->addSuccess(
+            $this->_getSession()->addSuccess(
                 'All requests have been successfully processed.'
             );
         } catch (Exception $ex) {
-            Mage::getSingleton('core/session')->addError(
+            $this->_getSession()->addError(
                 'Error processing requests: '.$ex->getMessage()
             );
         }

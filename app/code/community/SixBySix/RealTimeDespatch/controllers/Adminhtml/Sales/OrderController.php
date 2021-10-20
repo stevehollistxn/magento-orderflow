@@ -14,14 +14,21 @@ class SixBySix_RealTimeDespatch_Adminhtml_Sales_OrderController extends Mage_Adm
      */
     public function exportToOrderFlowAction()
     {
-        $orders = Mage::getResourceModel('sales/order_collection');
-        $orders->addFieldToFilter('entity_id', array('in' => (array) $this->getRequest()->getParam('order_ids')))
-               ->addFieldToFilter('is_virtual', array('eq' => 0))
-               ->addFieldToFilter('status', array('in' => Mage::helper('realtimedespatch/export_order')->getExportableOrderStatuses()))
-               ->load();
+    	$orderIds = $this->getRequest()->getParam('order_ids');
+    	if (!is_array($orderIds)) {
+		    $this->_getSession()->addError($this->__('Error Exporting Order(s) to OrderFlow: No orders selected.'));
+		    $this->_redirect('*/*/index');
+		    return $this;
+	    }
+
+        $orders = Mage::getResourceModel('sales/order_collection')
+	            ->addFieldToFilter('entity_id', array('in' => $orderIds))
+                ->addFieldToFilter('is_virtual', array('eq' => 0))
+                ->addFieldToFilter('status', array('in' => Mage::helper('realtimedespatch/export_order')->getExportableOrderStatuses()))
+                ->load();
 
         if ( ! count($orders) > 0) {
-            $this->_getSession()->addError($this->__('No exportable (invoiced) orders selected.'));
+            $this->_getSession()->addError($this->__('Error Exporting Order(s) to OrderFlow: No exportable orders selected.'));
             $this->_redirect('*/*/index');
             return;
         }

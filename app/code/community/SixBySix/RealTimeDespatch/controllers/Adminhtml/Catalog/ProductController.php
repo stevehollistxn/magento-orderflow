@@ -14,17 +14,25 @@ class SixBySix_RealTimeDespatch_Adminhtml_Catalog_ProductController extends Mage
      */
     public function exportToOrderFlowAction()
     {
-        $productID = (array) $this->getRequest()->getParam('product');
+        $productIds = $this->getRequest()->getParam('product');
+	    if (!is_array($productIds)) {
+		    $this->_getSession()->addError($this->__('Error Exporting Product(s) to OrderFlow: No products selected.'));
+		    $this->_redirect('*/*/index');
+		    return $this;
+	    }
 
-        $products = Mage::getModel('catalog/product')->getCollection();
-        $products
+        $products = Mage::getModel('catalog/product')
+	            ->getCollection()
                 ->addAttributeToSelect('*')
-                ->addAttributeToFilter('entity_id', $productID)
-                ->addAttributeToFilter('type_id', 'simple')
+                ->addAttributeToFilter('entity_id', $productIds)
+                ->addAttributeToFilter('type_id', Mage_Catalog_Model_Product_Type::TYPE_SIMPLE)
                 ->addStoreFilter(Mage::helper('realtimedespatch/export_product')->getStoreId())
                 ->load();
 
         if ( ! count($products) > 0) {
+        	$this->_getSession()->addError(
+        		$this->__('Error Exporting Product(s) to OrderFlow: No Simple products found in selection.')
+	        );
             $this->_redirect('*/*/index');
             return;
         }

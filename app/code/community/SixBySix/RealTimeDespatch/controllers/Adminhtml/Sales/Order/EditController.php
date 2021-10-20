@@ -19,29 +19,28 @@ class SixBySix_RealTimeDespatch_Adminhtml_Sales_Order_EditController extends Mag
     {
         $this->_getSession()->clear();
         $orderId = $this->getRequest()->getParam('order_id');
-        $order = Mage::getModel('sales/order')->load($orderId);
+	    $order = Mage::getModel('sales/order')->load($orderId);
 
-        try {
-            if ($order->getId()) {
-
-                if (!$order->getIsExported()) {
-                    return parent::startAction();
-                }
-                else {
-                    $response = Mage::helper('realtimedespatch/service')->getOrderService()->cancelOrder(
-                        new Order($order->getIncrementId())
-                    );
-
-                    Mage::getSingleton('adminhtml/session')->addSuccess("Cancellation success: " . $response);
-                    return parent::startAction();
-                }
-
+	    try {
+            if (!$order->getId()) {
+            	 throw new Exception('Order does not exist');
             }
+            if (!$order->getIsExported()) {
+                return parent::startAction();
+            }
+            else {
+                $response = Mage::helper('realtimedespatch/service')->getOrderService()->cancelOrder(
+                    new Order($order->getIncrementId())
+                );
+
+                $this->_getSession()->addSuccess("Cancellation success: " . $response);
+                return parent::startAction();
+            }
+
         } catch (Exception $e) {
-            Mage::getSingleton('adminhtml/session')->addError('Error cancelling order at OrderFlow: ' . $e->getMessage());
+            $this->_getSession()->addError('Error cancelling order at OrderFlow: ' . $e->getMessage());
             return parent::startAction();
         }
-
     }
 
 }

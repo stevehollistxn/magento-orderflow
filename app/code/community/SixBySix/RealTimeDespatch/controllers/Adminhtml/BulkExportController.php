@@ -56,11 +56,11 @@ class SixBySix_RealTimeDespatch_Adminhtml_BulkExportController extends Mage_Admi
             $export->setExecuted(Mage::getSingleton('core/date')->gmtDate('Y-m-d h:i:s'));
             $export->save();
 
-            Mage::getSingleton('core/session')->addSuccess(
+            $this->_getSession()->addSuccess(
                 'Bulk catalogue export initiated.'
             );
         } catch (Exception $ex) {
-            Mage::getSingleton('core/session')->addError(
+            $this->_getSession()->addError(
                 'Error processing export: '.$ex->getMessage()
             );
         }

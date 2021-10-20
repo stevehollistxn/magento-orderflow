@@ -42,7 +42,7 @@ class SixBySix_RealTimeDespatch_Model_Mapper_Orders extends Mage_Core_Helper_Abs
      *
      * @return RTDOrder
      */
-    protected function _encodeOrder(Mage_Sales_Model_Order $order, $exportedAt)
+    protected function _encodeOrder(Mage_Sales_Model_Order $order, DateTime $exportedAt)
     {
         $encodedOrder  = new RTDOrder;
         $customMapping = Mage::getConfig()->getNode('rtd_mappings/order');
@@ -51,7 +51,7 @@ class SixBySix_RealTimeDespatch_Model_Mapper_Orders extends Mage_Core_Helper_Abs
             $encodedOrder->setParam($rtdKey, $order->{'get'.$magentoKey}());
         }
 
-        $encodedOrder->setParam('exported', str_replace(' ','T', $exportedAt));
+        $encodedOrder->setParam('exported', str_replace(' ','T', $exportedAt->format('Y-m-d H:i:s')));
 
         $this->_encodeShippingAddress(
             $encodedOrder,

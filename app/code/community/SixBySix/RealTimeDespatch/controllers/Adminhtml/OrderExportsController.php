@@ -8,11 +8,6 @@ class SixBySix_RealTimeDespatch_Adminhtml_OrderExportsController extends Mage_Ad
     /**
      * {@inheritdoc}
      */
-    protected $_publicActions = array('view');
-
-    /**
-     * {@inheritdoc}
-     */
     protected function _isAllowed()
     {
         return Mage::getSingleton('admin/session')->isAllowed('realtimedespatch/exports/orderexports');
@@ -47,6 +42,13 @@ class SixBySix_RealTimeDespatch_Adminhtml_OrderExportsController extends Mage_Ad
     {
         $id     = $this->getRequest()->getParam('id');
         $export = Mage::getModel('realtimedespatch/export')->load($id);
+
+	    if (!$export->getId()) {
+		    $this->_getSession()->addError($this->__('Export does not exist.'));
+
+		    $this->_redirect('*/*/index');
+		    return $this;
+	    }
 
         $this->loadLayout();
 

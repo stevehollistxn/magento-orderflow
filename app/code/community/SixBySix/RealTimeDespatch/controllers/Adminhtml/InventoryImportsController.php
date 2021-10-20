@@ -8,11 +8,6 @@ class SixBySix_RealTimeDespatch_Adminhtml_InventoryImportsController extends Mag
     /**
      * {@inheritdoc}
      */
-    protected $_publicActions = array('view');
-
-    /**
-     * {@inheritdoc}
-     */
     protected function _isAllowed()
     {
         return Mage::getSingleton('admin/session')->isAllowed('realtimedespatch/imports/inventoryimports');
@@ -47,6 +42,13 @@ class SixBySix_RealTimeDespatch_Adminhtml_InventoryImportsController extends Mag
     {
         $id     = $this->getRequest()->getParam('id');
         $import = Mage::getModel('realtimedespatch/import')->load($id);
+
+        if (!$import->getId()) {
+	        $this->_getSession()->addError($this->__('Import does not exist.'));
+
+	        $this->_redirect('*/*/index');
+	        return $this;
+        }
 
         $this->loadLayout();
 
