@@ -18,12 +18,14 @@ class SixBySix_RealTimeDespatch_Model_Observer_Order_View
 		    return;
 	    }
 
+	    $request = Mage::app()->getRequest();
 	    $block = $event->getBlock();
 	    // sales > order > view
-	    if (($block->getNameInLayout() == 'order_info')) {
+	    if ($block->getNameInLayout() == 'order_info' &&
+		    ($request->getControllerName() == 'sales_order' && $request->getActionName() == 'view')) {
 		    $transport = $event->getTransport();
 		    $order = $block->getOrder();
-		    if ($transport) {
+		    if ($transport && !$order->getIsVirtual()) {
 			    $html = $transport->getHtml();
 
 			    // append orderflow info box

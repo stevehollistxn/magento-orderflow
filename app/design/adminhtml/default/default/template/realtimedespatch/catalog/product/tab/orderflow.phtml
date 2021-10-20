@@ -3,11 +3,23 @@
         <h4 class="icon-head head-payment-method"><?php echo Mage::helper('realtimedespatch')->__('OrderFlow') ?></h4>
     </div>
     <fieldset>
-        <p>
-            <a target="_blank" title="View Product" href="<?php echo $this->getOrderFlowProductUrl() ?>">
-                <?php echo $this->getOrderFlowProductUrl() ?>
-            </a>
-        </p>
+        <table>
+            <tr>
+                <td width="110"><?php echo Mage::helper('realtimedespatch')->__('Status') ?>:</td>
+                <td><?php echo ($this->isExported() ? 'Exported at ' . $this->getExportedAt()  : 'Not Exported' ) ?></td>
+            </tr>
+		    <?php if ($this->isExported()): ?>
+                <tr>
+                    <td width="110"><?php echo Mage::helper('realtimedespatch')->__('Link') ?>:</td>
+                    <td>
+                        <a title="View Order" target="_blank" href="<?php echo $this->getOrderFlowProductUrl() ?>">
+						    <?php echo $this->getOrderFlowProductUrl() ?>
+                        </a>
+                    </td>
+                </tr>
+		    <?php endif ?>
+        </table>
+        <br />
         <details>
             <summary>More information</summary>
             <p>
