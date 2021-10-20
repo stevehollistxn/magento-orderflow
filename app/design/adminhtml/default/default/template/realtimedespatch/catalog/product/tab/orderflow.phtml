@@ -1,16 +1,18 @@
-<?php $orderFlowHelper = Mage::helper('realtimedespatch'); ?>
-<?php if ($orderFlowHelper->isConfigured() && Mage::helper('realtimedespatch/admin_info')->isEnabled()): ?>
-    <div class="entry-edit">
-        <div class="entry-edit-head">
-            <h4 class="icon-head head-payment-method"><?php echo Mage::helper('sales')->__('OrderFlow') ?></h4>
-        </div>
-        <fieldset>
-            <p>
-                OrderFlow users with the appropriate permissions can use the link below to view or edit the product in the OrderFlow environment. Note that any changes made in OrderFlow will not be reflected in Magento.
-            </p>
-            <a target="_blank" title="View Product" href="<?php echo $orderFlowHelper->getApiEndpoint()?>inventory/product/referenceDetail.htm?externalReference=<?php echo urlencode(Mage::registry('product')->getSku()); ?> &channel=<?php echo urlencode($orderFlowHelper->getApiChannel()); ?>">
-                <?php echo $orderFlowHelper->getApiEndpoint()?>inventory/product/referenceDetail.htm?externalReference=<?php echo urlencode(Mage::registry('product')->getSku()); ?>&channel=<?php echo urlencode($orderFlowHelper->getApiChannel()); ?>
-            </a>
-        </fieldset>
+<div class="entry-edit">
+    <div class="entry-edit-head">
+        <h4 class="icon-head head-payment-method"><?php echo Mage::helper('realtimedespatch')->__('OrderFlow') ?></h4>
     </div>
-<?php endif; ?>
+    <fieldset>
+        <p>
+            <a target="_blank" title="View Product" href="<?php echo $this->getOrderFlowProductUrl() ?>">
+                <?php echo $this->getOrderFlowProductUrl() ?>
+            </a>
+        </p>
+        <details>
+            <summary>More information</summary>
+            <p>
+                OrderFlow users with the appropriate permissions can use the link above to view or edit the product in the OrderFlow environment. Note that any changes made in OrderFlow will not be reflected in Magento.
+            </p>
+        </details>
+    </fieldset>
+</div>

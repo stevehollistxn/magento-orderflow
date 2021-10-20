@@ -1,0 +1,35 @@
+<div class="box-<?php echo $this->getSide() ?>">
+	<div class="entry-edit">
+		<div class="entry-edit-head">
+			<h4 class="icon-head head-payment-method"><?php echo Mage::helper('sales')->__('OrderFlow') ?></h4>
+		</div>
+		<fieldset>
+            <p>
+                <a title="View Order" target="_blank" href="<?php echo $this->getOrderFlowUrl() ?>">
+                    <?php echo $this->getOrderFlowUrl() ?>
+                </a>
+            </p>
+            <details>
+                <summary>More information</summary>
+                <div>
+                    <p>
+                        OrderFlow users with the appropriate permissions can use the link
+                        below to view or edit the order in the OrderFlow environment. Note
+                        that any changes made in OrderFlow will not be reflected in Magento.
+                    </p>
+
+                    <p>
+                        As an order progresses through the OrderFlow pack and despatch process
+                        the changes that can be made to it become more limited.
+                    </p>
+
+                    <p>
+                        In some circumstances an order may have been split into multiple
+                        outgoing shipments, changes can be made to either a particular
+                        shipment or to the parent order.
+                    </p>
+                </div>
+            </details>
+		</fieldset>
+	</div>
+</div>

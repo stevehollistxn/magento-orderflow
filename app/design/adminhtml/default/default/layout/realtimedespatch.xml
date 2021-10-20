@@ -73,17 +73,6 @@
             <block type="realtimedespatch/adminhtml_process_schedule" name="process_schedule" />
         </reference>
     </adminhtml_processschedule_index>
-    <adminhtml_sales_order_view>
-        <reference name="left">
-            <reference name="sales_order_tabs">
-                <reference name="order_tab_info">
-                    <action method="setTemplate">
-                        <template>realtimedespatch/sales/order/view/tab/info.phtml</template>
-                    </action>
-                </reference>
-            </reference>
-        </reference>
-    </adminhtml_sales_order_view>
     <adminhtml_sales_order_creditmemo_new>
         <reference name="content">
             <reference name="sales_creditmemo_create">
